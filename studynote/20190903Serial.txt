@@ -1,0 +1,38 @@
+복습
+포인터의 배열->포인터가 배열로 되어있는것, char *arr[];
+주된용도는 문자열 처리
+char *arr[2] = { "abcd", "1234" }
+printf("%s", arr[0]);
+
+#1
+sturct a{
+	char a; //4
+	int b; //4
+	short c; //4
+}//12
+
+#2
+struct a{
+	char a;
+	short c;
+	---------4
+	int b;
+	---------4
+}//8
+4바이트찰때까지 메모리를 잡으므로 밑의 경우가 메모리를 잡음
+2를 기준으로 구조체 관련 변수를 선언하면
+struct a b;//b는 8byte
+b.a = 5;
+
+struct a *b;//b는 4byte
+b->a=5;
+
+UART
+fullduplex
+UART는 클락이 없으므로 BaudRate를 통해 01을 구분
+UART프로토콜 Tx와 Rx가 늘 high인데 통신이 시작되서 Low로 떨어지는 시점에
+1비트씩 검사한다.
+Start->8비트->페리티->Stop
+1/9600->104.166us
+Rx, Tx->usb to serial chip->COM포트로 잡힘
+error 0.2% 1000개를 보내면 1002개가 들어가는것 -0.2%는 998가 들어가는것(둘다 타이밍이 어긋나서 생김)
