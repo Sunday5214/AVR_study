@@ -1,0 +1,59 @@
+복습
+포인터의 배열->포인터가 배열로 되어있는것, char *arr[];
+주된용도는 문자열 처리
+char *arr[2] = { "abcd", "1234" }
+printf("%s", arr[0]);
+
+#1
+sturct a{
+	char a; //4
+	int b; //4
+	short c; //4
+}//12
+
+#2
+struct a{
+	char a;
+	short c;
+	---------4
+	int b;
+	---------4
+}//8
+4바이트찰때까지 메모리를 잡으므로 밑의 경우가 메모리를 잡음
+2를 기준으로 구조체 관련 변수를 선언하면
+struct a b;//b는 8byte
+b.a = 5;
+
+struct a *b;//b는 4byte
+b->a=5;
+
+UART
+fullduplex
+UART는 클락이 없으므로 BaudRate를 통해 01을 구분
+UART프로토콜 Tx와 Rx가 늘 high인데 통신이 시작되서 Low로 떨어지는 시점에
+1비트씩 검사한다.
+Start->8비트->페리티->Stop
+1/9600->104.166us
+Rx, Tx->usb to serial chip->COM포트로 잡힘
+error 0.2% 1000개를 보내면 1002개가 들어가는것 -0.2%는 998가 들어가는것(둘다 타이밍이 어긋나서 생김)
+UART에 Snyc를 사용하려면 클락핀을 할당할 수 있다 그런데 그렇게 안쓴다고한다.
+
+  UBRR0 = 103; //9600 baudrate;
+  UCSR0A = 0x00; //U2X = 0;
+  UCSR0B = 0x98; //TXRX Enable&intrrupt enable
+  UCSR0C = 0x06; // Async, No Parity, 1 stop, 8bit
+
+1. UBRR0, baudrate 조정
+2. UDR0 : data
+3. UCSR0A : 7(Rx Complete Flag), 5(Tx data register empty)
+4. UCSR0B : 7(Rx Complete Int), 5(data register empty int enable), 4(Rx enable), 3(Tx enable)
+5. UCSR0C : 6(Async), 5/4(parity), 3(stop bit), 2/1(8bit)
+
+UCSR0A의 UDRE UART DATA REGISTER EMPTY 비트는 UDR이 비면 1로변한다.
+RXCn->USART Recelve Complete
+TXCn->USART Transmit Complete
+
+UCSR0B에는 인터럽트 비트가 있음
+RXCIE RX Complete Interrupt Enable
+TXCIE TX 
+
