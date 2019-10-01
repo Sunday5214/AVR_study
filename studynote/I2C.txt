@@ -1,0 +1,9 @@
+SCL frequency = CPU Clock frequency/16+2(TWBR)*4^TWPS
+100kHz
+TWPS : 1
+TWBR : 18
+
+TWSR, TWDR(데이터 레지스터), TWAR(Adress Register, slave일때 사용), TWCR(00000000 5번비트는 start, 4은 stop. 1번째는 인터럽트 enable, 2번째는
+enable 6번은 ACK를 날릴때씀, 7 1을적으면 클리어함, 클리어하면 바로 다음동작)
+TWSR->0000 0000/ 7~3번에서     ACK값이 생김,
+Stop은 1넣으면 알아서 Clear
