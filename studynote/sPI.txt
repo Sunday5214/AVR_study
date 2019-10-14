@@ -1,0 +1,18 @@
+M
+->CLK=클럭
+->MOSI=인풋
+->MISO=아웃풋
+->SS(CS)=Chip Selector 어떤 기기와 통신할지 정함 로우엑티브로 High인상태에서 Low로 만들어야 통신가능
+Sin과 Cos의 위상차는 90도
+
+SPCR SPI Control Register
+7번 비트 SPI Interrupt Enable
+6 SPI Enable
+5 DORD Data Order
+4 MSTR Master/Slave Select
+SPSR 7번 플래그 비트->인터럽트 루틴으로 넘어가면 클리어or 한 번 읽으면 클리어
+P4 : D4   P3 : BackLight
+P5 : D5   P2 : E
+P6 : D6   P1 : RW
+P7 : P7   P0 : RS
+device ID : 0x27(7bit)
