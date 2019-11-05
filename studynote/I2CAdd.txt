@@ -1,0 +1,22 @@
+start
+data:Low
+clock:Low
+
+data 8bit
+data:1 0
+clock high
+clock low
+*8
+
+Ack
+data input mode
+clock high
+clock low
+data output mode
+
+stop
+data low
+clock high
+data high
+
+485 방식
